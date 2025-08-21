@@ -10,6 +10,7 @@ use App\Models\Food\Food;
 use App\Models\Food\Cart;
 use App\Models\Food\Checkout;
 use App\Models\Food\Booking;
+use App\Models\Food\Review;
 
 class FoodsController extends Controller
 {
@@ -29,7 +30,12 @@ class FoodsController extends Controller
             ->take(4)
             ->get();
 
-        return view('dashboard', compact('breakfastFoods', 'lunchFoods', 'dinnerFoods'));
+        $reviews = Review::select()
+            ->take(6)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('dashboard', compact('breakfastFoods', 'lunchFoods', 'dinnerFoods', 'reviews'));
     }
 
     public function foodDetails($id) {
