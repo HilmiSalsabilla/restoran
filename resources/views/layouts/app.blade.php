@@ -79,6 +79,14 @@
                                             </form>
                                         </li>
                                         <li>
+                                            <form method="POST" action="{{ route('users.orders') }}">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item text-danger">
+                                                    My Orders
+                                                </button>
+                                            </form>
+                                        </li>
+                                        <li>
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
                                                 <button type="submit" class="dropdown-item text-danger">

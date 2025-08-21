@@ -49,6 +49,7 @@ Route::prefix('foods')->group(function () {
 
 Route::prefix('users')->group(function () {
     Route::post('all-bookings', [UsersController::class, 'getBookings'])->name('users.bookings');
+    Route::post('all-orders', [UsersController::class, 'getOrders'])->name('users.orders');
 });
 
 // Dashboard dengan middleware auth + verified
