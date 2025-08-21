@@ -71,6 +71,14 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end bg-dark border-0 shadow" aria-labelledby="userDropdown">
                                         <li>
+                                            <form method="POST" action="{{ route('users.bookings') }}">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item text-danger">
+                                                    My Bookings
+                                                </button>
+                                            </form>
+                                        </li>
+                                        <li>
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
                                                 <button type="submit" class="dropdown-item text-danger">

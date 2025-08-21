@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Foods\FoodsController;
+use App\Http\Controllers\Users\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,10 @@ Route::prefix('foods')->group(function () {
     Route::post('booking', [FoodsController::class, 'bookingTables'])->name('foods.booking.table');
     //menu
     Route::get('menu', [FoodsController::class, 'menu'])->name('foods.menu');
+});
+
+Route::prefix('users')->group(function () {
+    Route::post('all-bookings', [UsersController::class, 'getBookings'])->name('users.bookings');
 });
 
 // Dashboard dengan middleware auth + verified

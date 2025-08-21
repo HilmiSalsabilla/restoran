@@ -19,7 +19,7 @@
         @endif
     </div>
 
-    <div class="container">   
+    <div class="container">
         <div class="col-md-12">
             <table class="table">
                 <thead>
