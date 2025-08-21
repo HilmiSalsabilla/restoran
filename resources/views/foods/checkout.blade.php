@@ -16,7 +16,7 @@
     <div class="container">          
         <div class="col-md-12 bg-dark">
             <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal">Checkout</h5>
                 <h1 class="text-white mb-4">Checkout</h1>
                 <form method="POST" action="{{ route('foods.checkout.store') }}"  class="col-md-12">
                     @csrf

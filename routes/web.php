@@ -48,8 +48,11 @@ Route::prefix('foods')->group(function () {
 });
 
 Route::prefix('users')->group(function () {
-    Route::post('all-bookings', [UsersController::class, 'getBookings'])->name('users.bookings');
-    Route::post('all-orders', [UsersController::class, 'getOrders'])->name('users.orders');
+    Route::get('all-bookings', [UsersController::class, 'getBookings'])->name('users.bookings');
+    Route::get('all-orders', [UsersController::class, 'getOrders'])->name('users.orders');
+    //reviews
+    Route::get('write-review', [UsersController::class, 'viewReview'])->name('users.review.create');
+    Route::post('write-review', [UsersController::class, 'submitReview'])->name('users.review.store');
 });
 
 // Dashboard dengan middleware auth + verified
