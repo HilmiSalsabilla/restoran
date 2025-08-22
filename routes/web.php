@@ -17,25 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dashboard');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Halaman utama diarahkan ke dashboard (FoodsController)
+// Halaman publik
 Route::get('/', [Controller::class, 'index']);
-Route::get('/dashboard', [Controller::class, 'index']);
 Route::get('/about', [Controller::class, 'about'])->name('about');
 Route::get('/services', [Controller::class, 'services'])->name('services');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 
 Route::prefix('foods')->group(function () {
+    //food details
     Route::get('food-details/{id}', [FoodsController::class, 'foodDetails'])->name('food.details');
-    //cart
     Route::post('food-details/{id}', [FoodsController::class, 'cart'])->name('food.cart');
+    //cart
     Route::get('cart', [FoodsController::class, 'displayCartItems'])->name('food.display.cart');
     Route::get('delete-cart/{id}', [FoodsController::class, 'deleteCartItems'])->name('food.delete.cart');
     //checkout
