@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Controller::class, 'index']);
 Route::get('/dashboard', [Controller::class, 'index']);
 Route::get('/about', [Controller::class, 'about'])->name('about');
+Route::get('/services', [Controller::class, 'services'])->name('services');
+Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 
 Route::prefix('foods')->group(function () {
     Route::get('food-details/{id}', [FoodsController::class, 'foodDetails'])->name('food.details');
