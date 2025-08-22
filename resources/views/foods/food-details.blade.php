@@ -13,13 +13,19 @@
         </div>
     </div>
 
-    <div class="container-fluid py-5">
+    <div class="container">
         @if(Session::has('success'))
             <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('success') }}</p>
         @endif
     </div>
+
+    <div class="container">
+        @if(Session::has('danger'))
+            <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('danger') }}</p>
+        @endif
+    </div>
  
-    <div class="container-fluid py-5">
+    <div class="container">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-md-6">
@@ -39,20 +45,24 @@
                             </div>
                         </div>
                     </div>
-                    <form action="{{ route('food.cart', $foodItem->id) }}" method="post">
-                        @csrf
-                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        <input type="hidden" name="food_id" value="{{ $foodItem->id }}">
-                        <input type="hidden" name="name" value="{{ $foodItem->name }}">
-                        <input type="hidden" name="image" value="{{ $foodItem->image }}">
-                        <input type="hidden" name="price" value="{{ $foodItem->price }}">
+                    @auth
+                        <form action="{{ route('food.cart', $foodItem->id) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="food_id" value="{{ $foodItem->id }}">
+                            <input type="hidden" name="name" value="{{ $foodItem->name }}">
+                            <input type="hidden" name="image" value="{{ $foodItem->image }}">
+                            <input type="hidden" name="price" value="{{ $foodItem->price }}">
 
-                        @if($cartVerify > 0)
-                            <button class="btn btn-primary py-3 px-5 mt-2" disabled>Added to Cart</button>
-                        @else
-                            <button type="submit" name="submit" class="btn btn-primary py-3 px-5 mt-2">Add to Cart</button>
-                        @endif
-                    </form>
+                            @if($cartVerify > 0)
+                                <button class="btn btn-primary py-3 px-5 mt-2" disabled>Added to Cart</button>
+                            @else
+                                <button type="submit" name="submit" class="btn btn-primary py-3 px-5 mt-2">Add to Cart</button>
+                            @endif
+                        </form>
+                    @else
+                        <p class="alert alert-danger">Please <a href="{{ route('login') }}">login</a> to add this item to your cart.</p>
+                    @endauth
                 </div>
             </div>
         </div>

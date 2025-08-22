@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Foods\FoodsController;
 use App\Http\Controllers\Users\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,9 @@ use Illuminate\Support\Facades\Route;
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Halaman utama diarahkan ke dashboard (FoodsController)
-Route::get('/', [FoodsController::class, 'index']);
+Route::get('/', [Controller::class, 'index']);
+Route::get('/dashboard', [Controller::class, 'index']);
+Route::get('/about', [Controller::class, 'about'])->name('about');
 
 Route::prefix('foods')->group(function () {
     Route::get('food-details/{id}', [FoodsController::class, 'foodDetails'])->name('food.details');
@@ -56,7 +59,7 @@ Route::prefix('users')->group(function () {
 });
 
 // Dashboard dengan middleware auth + verified
-Route::get('/dashboard', [FoodsController::class, 'index'])
+Route::get('/dashboard', [Controller::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 

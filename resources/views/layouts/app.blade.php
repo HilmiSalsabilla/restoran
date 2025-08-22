@@ -56,7 +56,7 @@
                     <div class="navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
                             <a href="{{ route('dashboard') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
-                            <a href="{{ url('/about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
+                            <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About</a>
                             <a href="{{ url('/service') }}" class="nav-item nav-link {{ request()->is('service') ? 'active' : '' }}">Service</a>
                             <a href="{{ route('foods.menu') }}" class="nav-item nav-link {{ request()->is('menu') ? 'active' : '' }}">Menu</a>
                             <a href="{{ url('/contact') }}" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>

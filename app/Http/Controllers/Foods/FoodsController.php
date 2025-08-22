@@ -14,38 +14,18 @@ use App\Models\Food\Review;
 
 class FoodsController extends Controller
 {
-    public function index() {
-        $breakfastFoods = Food::where('category', 'Breakfast')
-            ->orderBy('id', 'desc')
-            ->take(4)
-            ->get();
-
-        $lunchFoods = Food::where('category', 'Lunch')
-            ->orderBy('id', 'desc')
-            ->take(4)
-            ->get();
-
-        $dinnerFoods = Food::where('category', 'Dinner')
-            ->orderBy('id', 'desc')
-            ->take(4)
-            ->get();
-
-        $reviews = Review::select()
-            ->take(6)
-            ->orderBy('id', 'desc')
-            ->get();
-
-        return view('dashboard', compact('breakfastFoods', 'lunchFoods', 'dinnerFoods', 'reviews'));
-    }
-
     public function foodDetails($id) {
         $foodItem = Food::find($id);
 
         //verifying if the user added item to cart
-        $cartVerify = Cart::where('food_id', $id)
-                    ->where('user_id', Auth::user()->id)->count();
+        if(auth()->user()) {
+            $cartVerify = Cart::where('food_id', $id)
+                        ->where('user_id', Auth::user()->id)->count();
 
-        return view('foods.food-details', compact('foodItem', 'cartVerify'));
+            return view('foods.food-details', compact('foodItem', 'cartVerify'));
+        } else {
+            return view('foods.food-details', compact('foodItem'));
+        }
     }
 
     public function cart(Request $request, $id) {
