@@ -54,9 +54,13 @@ Route::prefix('users')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('login', [AdminsController::class, 'viewLogin'])->name('view.login');
+    Route::get('login', [AdminsController::class, 'viewLogin'])->name('view.login')->middleware('checkforauth');
     Route::post('login', [AdminsController::class, 'checkLogin'])->name('check.login');
-    Route::get('index', [AdminsController::class, 'index'])->name('admins.index');
+
+    Route::middleware('auth:admin')->group(function() {
+        Route::get('index', [AdminsController::class, 'index'])->name('admins.dashboard');
+        Route::post('logout', [AdminsController::class, 'logout'])->name('admin.logout');
+    });
 });
 
 // Dashboard dengan middleware auth + verified

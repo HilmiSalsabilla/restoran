@@ -16,7 +16,7 @@
 <body>
     <div id="wrapper">
         <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="#">Admin Restoran</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" 
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,42 +24,56 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav side-nav" >
-                        <li class="nav-item">
-                            <a class="nav-link" style="margin-left: 20px;" href="index.html">Home
-                            <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="orders-admins/show-orders.html" style="margin-left: 20px;">Orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="foods-admins/show-foods.html" style="margin-left: 20px;">Foods</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-md-auto d-md-flex">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home
+                    @auth('admin')
+                        <ul class="navbar-nav side-nav" >
+                            <li class="nav-item">
+                                <a class="nav-link" style="margin-left: 20px;" href="{{ route('admins.dashboard') }}">Home
                                 <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="admins/login-admins.html">Login</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Username
-                            </a>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="orders-admins/show-orders.html" style="margin-left: 20px;">Orders</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="foods-admins/show-foods.html" style="margin-left: 20px;">Foods</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
+                            </li>
+                        </ul>
+                    @endauth
+                    
+                    <ul class="navbar-nav ml-md-auto d-md-flex">
+                        @auth('admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admins.dashboard') }}">Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::guard('admin')->user()->name }}
+                                </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </li>
+                                    <a class="dropdown-item" href="#"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('admin-logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('view.login') }}">Login</a>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
             </div>

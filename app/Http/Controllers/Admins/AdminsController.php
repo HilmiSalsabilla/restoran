@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminsController extends Controller
 {
@@ -19,15 +20,19 @@ class AdminsController extends Controller
             'password' => $request->input("password")
         ], 
             $remember_me)) {
-                return redirect() -> route('admins.index');
+                return redirect()->route('admins.dashboard');
             }
         return redirect()->back()->with(['error' => 'error logging in']);
     }
 
-    // public function logout() {
-    //     auth()->guard('admin')->logout();
-    //     return redirect()->route('view.login');
-    // }
+    public function logout(Request $request) {
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('view.login');
+    }
 
     public function index() {
         return view('admins.index');
