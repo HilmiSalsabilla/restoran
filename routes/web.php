@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Foods\FoodsController;
 use App\Http\Controllers\Users\UsersController;
+use App\Http\Controllers\Admins\AdminsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,12 @@ Route::prefix('users')->group(function () {
     //reviews
     Route::get('write-review', [UsersController::class, 'viewReview'])->name('users.review.create');
     Route::post('write-review', [UsersController::class, 'submitReview'])->name('users.review.store');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('login', [AdminsController::class, 'viewLogin'])->name('view.login');
+    Route::post('login', [AdminsController::class, 'checkLogin'])->name('check.login');
+    Route::get('index', [AdminsController::class, 'index'])->name('admins.index');
 });
 
 // Dashboard dengan middleware auth + verified
