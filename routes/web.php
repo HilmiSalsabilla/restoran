@@ -60,6 +60,10 @@ Route::prefix('admin')->group(function () {
     Route::middleware('auth:admin')->group(function() {
         Route::get('index', [AdminsController::class, 'index'])->name('admins.dashboard');
         Route::post('logout', [AdminsController::class, 'logout'])->name('admin.logout');
+        //admins
+        Route::get('all-admins', [AdminsController::class, 'allAdmins'])->name('admins.all');
+        Route::get('create-admins', [AdminsController::class, 'createAdmins'])->name('admins.create');
+        Route::post('create-admins', [AdminsController::class, 'storeAdmins'])->name('admins.store');
     });
 });
 

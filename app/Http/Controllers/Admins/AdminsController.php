@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Food\Food;
+use App\Models\Admin\Admin;
+use App\Models\Food\Checkout;
+use App\Models\Food\Booking;
+use Illuminate\Http\Request;
 
 class AdminsController extends Controller
 {
@@ -35,6 +40,40 @@ class AdminsController extends Controller
     }
 
     public function index() {
-        return view('admins.index');
+        //count
+        $foodCount = Food::select()->count();
+        $checkoutCount = Checkout::select()->count();
+        $bookingCount = Booking::select()->count();
+        $adminCount = Admin::select()->count();
+
+        return view('admins.index', compact('foodCount', 'checkoutCount', 'bookingCount', 'adminCount'));
+    }
+
+    public function allAdmins() {
+        $admins = Admin::select()->orderBy('id')->get();
+        
+        return view('admins.all-admins', compact('admins'));
+    }
+
+    public function createAdmins() {
+        return view('admins.create-admins');
+    }
+
+    public function storeAdmins(Request $request) {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $admins = Admin::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
+        ]);
+
+        if($admins) {
+            return redirect()->route('admins.all')->with(['success'=>'Admin created successfully']);
+        }  
     }
 }

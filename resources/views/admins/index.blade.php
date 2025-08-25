@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Foods</h5>
-                    <p class="card-text">number of foods: 8</p>
+                    <p class="card-text">number of foods: {{ $foodCount }} </p>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Orders</h5>
-                    <p class="card-text">number of orders: 4</p>
+                    <p class="card-text">number of orders: {{ $checkoutCount }} </p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Bookings</h5>
-                    <p class="card-text">number of bookings: 4</p>
+                    <p class="card-text">number of bookings: {{ $bookingCount }} </p>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Admins</h5>
-                    <p class="card-text">number of admins: 3</p>
+                    <p class="card-text">number of admins: {{ $adminCount }} </p>
                 </div>
             </div>
         </div>
