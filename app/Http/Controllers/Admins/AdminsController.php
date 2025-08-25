@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 use App\Models\Food\Food;
 use App\Models\Admin\Admin;
 use App\Models\Food\Checkout;
@@ -216,6 +217,13 @@ class AdminsController extends Controller
 
     public function deleteFoods($id) {
         $food = Food::find($id);
+
+        if(File::exists(public_path('assets/img/' . $food->image))){
+            File::delete(public_path('assets/img/' . $food->image));
+        }else{
+            //dd('File does not exists.');
+        }
+        
         $food->delete();
 
         if($food) {
