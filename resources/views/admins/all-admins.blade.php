@@ -3,18 +3,21 @@
 @section('content')
     <div class="container-fluid">
         @if(Session::has('success'))
-            <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('success') }}</p>
+            <div class="alert alert-success">{{Session::get('success')}}</div>
         @endif
     </div>
 
     <div class="row">
         <div class="col">
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title mb-4 d-inline">Admins</h5>
-                    <a  href="{{ route('admins.create') }}" class="btn btn-primary mb-4 text-center float-right">Create Admins</a>
-                    <table class="table">
-                        <thead>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title mb-0"><b>Admins</b></h5>
+                        <a href="{{ route('admins.create') }}" class="btn btn-primary btn-sm">+ Create Admin</a>
+                    </div>
+
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Username</th>
@@ -22,16 +25,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($admins as $admin)
-                            <tr>
-                                {{-- <th scope="row"> {{ $admin->id }} </th> --}}
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $admin->name }}</td>
-                                <td>{{ $admin->email }}</td>
-                            </tr>
-                            @endforeach
+                            @forelse($admins as $admin)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $admin->name }}</td>
+                                    <td>{{ $admin->email }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">No admins found.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
             </div>
         </div>

@@ -64,6 +64,17 @@ Route::prefix('admin')->group(function () {
         Route::get('all-admins', [AdminsController::class, 'allAdmins'])->name('admins.all');
         Route::get('create-admins', [AdminsController::class, 'createAdmins'])->name('admins.create');
         Route::post('create-admins', [AdminsController::class, 'storeAdmins'])->name('admins.store');
+        //orders
+        Route::get('all-orders', [AdminsController::class, 'allOrders'])->name('orders.all');
+        Route::get('edit-orders/{id}', [AdminsController::class, 'editOrders'])->name('orders.edit');
+        Route::post('edit-orders/{id}', [AdminsController::class, 'updateOrders'])->name('orders.update');
+        Route::get('delete-orders/{id}', [AdminsController::class, 'deleteOrders'])->name('orders.delete');
+        //bookings
+        Route::get('all-bookings', [AdminsController::class, 'allBookings'])->name('bookings.all');
+        Route::get('edit-bookings/{id}', [AdminsController::class, 'editBookings'])->name('bookings.edit');
+        Route::post('edit-bookings/{id}', [AdminsController::class, 'updateBookings'])->name('bookings.update');
+        Route::get('delete-bookings/{id}', [AdminsController::class, 'deleteBookings'])->name('bookings.delete');
+
     });
 });
 

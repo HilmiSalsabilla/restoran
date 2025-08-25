@@ -63,7 +63,7 @@ class AdminsController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required'],
         ]);
 
         $admins = Admin::create([
@@ -75,5 +75,65 @@ class AdminsController extends Controller
         if($admins) {
             return redirect()->route('admins.all')->with(['success'=>'Admin created successfully']);
         }  
+    }
+
+    public function allOrders() {
+        $orders = Checkout::select()->orderBy('id', 'desc')->get();
+
+        return view('admins.all-orders', compact('orders'));
+    }
+
+    public function editOrders($id) {
+        $order = Checkout::find($id);
+
+        return view('admins.edit-orders', compact('order'));
+    }
+
+    public function updateOrders(Request $request, $id) {
+        $order = Checkout::find($id);
+        $order->update($request->all());
+
+        if($order) {
+            return redirect()->route('orders.all')->with(['success'=>'Order status updated successfully']);
+        }
+    }
+
+    public function deleteOrders($id) {
+        $order = Checkout::find($id);
+        $order->delete();
+
+        if($order) {
+            return redirect()->route('orders.all')->with(['danger'=>'Order deleted successfully']);
+        }
+    }
+
+    public function allBookings() {
+        $bookings = Booking::select()->orderBy('id', 'desc')->get();
+
+        return view('admins.all-bookings', compact('bookings'));
+    }
+
+    public function editBookings($id) {
+        $booking = Booking::find($id);
+
+        return view('admins.edit-bookings', compact('booking'));
+    }
+
+    public function updateBookings(Request $request, $id) {
+        $booking = Booking::find($id);
+        $booking->update($request->all());
+
+        if($booking) {
+            return redirect()->route('bookings.all')->with(['success'=>'Booking status updated successfully']);
+        }
+    }
+
+    public function deleteBookings($id) {
+        $booking = Booking::find($id);
+        $booking->delete();
+
+        if($booking) {
+            return redirect()->route('bookings.all')->with(['danger'=>'Booking deleted successfully']);
+        }
     }
 }
