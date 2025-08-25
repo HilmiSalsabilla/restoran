@@ -16,6 +16,7 @@ class Food extends Model
         'price',
         'category',
         'description',
+        'image',
     ];
 
     public $timestamps = true;

@@ -18,7 +18,7 @@
                     <h5 class="card-title mb-4"><b>Bookings</b></h5>
 
                     <table class="table table-striped table-bordered table-hover align-middle">
-                        <thead class="table-dark text-center">
+                        <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
@@ -36,7 +36,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $booking->name }}</td>
                                     <td>{{ $booking->email }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($booking->date)->format('d M Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($booking->date)->format('d M Y H:i') }}</td>
                                     <td class="text-center">{{ $booking->num_people }}</td>
                                     <td style="max-width: 200px; white-space: normal;">
                                         {{ $booking->spe_request }}

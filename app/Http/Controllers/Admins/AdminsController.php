@@ -136,4 +136,90 @@ class AdminsController extends Controller
             return redirect()->route('bookings.all')->with(['danger'=>'Booking deleted successfully']);
         }
     }
+
+    public function allFoods() {
+        $foods = Food::select()->orderBy('id', 'desc')->get();
+
+        return view('admins.all-foods', compact('foods'));
+    }
+
+    public function createFoods() {
+        return view('admins.create-foods');
+    }
+
+    public function storeFoods(Request $request) {
+        $destinationPath = 'assets/img/';
+        $myimage = $request->image->getClientOriginalName();
+        $request->image->move(public_path($destinationPath), $myimage);
+
+        $foods = Food::create([
+            "name" => $request->name,
+            "price" => $request->price,
+            "category" => $request->category,
+            "description" => $request->description,
+            "image" => $myimage,
+        ]);
+
+        if($foods) {
+            return redirect()->route('foods.all')->with(['success'=>'Food item created successfully']);
+        }  
+    }
+
+    public function editFoods($id) {
+        $food = Food::find($id);
+
+        return view('admins.edit-foods', compact('food'));
+    }
+    
+    public function updateFoods(Request $request, $id) {
+        $food = Food::find($id);
+
+        if($request->hasFile('image')) {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+                'price' => ['required', 'numeric'],
+                'category' => ['required', 'string', 'max:255'],
+                'description' => ['required', 'string'],
+            ]);
+
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('assets/img'), $imageName);
+
+            $food->update([
+                "name" => $request->name,
+                "image" => $imageName,
+                "price" => $request->price,
+                "category" => $request->category,
+                "description" => $request->description,
+            ]);
+        } else {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'price' => ['required', 'numeric'],
+                'category' => ['required', 'string', 'max:255'],
+                'description' => ['required', 'string'],
+            ]);
+
+            $food->update([
+                "name" => $request->name,
+                "price" => $request->price,
+                "category" => $request->category,
+                "description" => $request->description,
+            ]);
+        }
+
+        if($food) {
+            return redirect()->route('foods.all')->with(['success'=>'Food updated successfully']);
+        }
+    }
+
+    public function deleteFoods($id) {
+        $food = Food::find($id);
+        $food->delete();
+
+        if($food) {
+            return redirect()->route('foods.all')->with(['danger'=>'Food deleted successfully']);
+        }
+    }
 }

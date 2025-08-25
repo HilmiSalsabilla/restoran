@@ -74,7 +74,13 @@ Route::prefix('admin')->group(function () {
         Route::get('edit-bookings/{id}', [AdminsController::class, 'editBookings'])->name('bookings.edit');
         Route::post('edit-bookings/{id}', [AdminsController::class, 'updateBookings'])->name('bookings.update');
         Route::get('delete-bookings/{id}', [AdminsController::class, 'deleteBookings'])->name('bookings.delete');
-
+        //foods
+        Route::get('all-foods', [AdminsController::class, 'allFoods'])->name('foods.all');
+        Route::get('create-foods', [AdminsController::class, 'createFoods'])->name('foods.create');
+        Route::post('create-foods', [AdminsController::class, 'storeFoods'])->name('foods.store');
+        Route::get('edit-foods/{id}', [AdminsController::class, 'editFoods'])->name('foods.edit');
+        Route::post('edit-foods/{id}', [AdminsController::class, 'updateFoods'])->name('foods.update');
+        Route::get('delete-foods/{id}', [AdminsController::class, 'deleteFoods'])->name('foods.delete');
     });
 });
 

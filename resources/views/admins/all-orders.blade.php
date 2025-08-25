@@ -18,7 +18,7 @@
                     <h5 class="card-title mb-4"><b>Orders</b></h5>
 
                     <table class="table table-striped table-bordered table-hover align-middle">
-                        <thead class="table-dark text-center">
+                        <thead class="text-center">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>

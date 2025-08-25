@@ -16,8 +16,8 @@
                         <a href="{{ route('admins.create') }}" class="btn btn-primary btn-sm">+ Create Admin</a>
                     </div>
 
-                    <table class="table table-striped table-hover">
-                        <thead class="table-dark">
+                    <table class="table table-bordered table-striped table-hover align-middle">
+                        <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Username</th>
