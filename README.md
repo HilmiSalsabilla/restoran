@@ -1,100 +1,143 @@
-# Restoran
+# 🍽️ Restoran
 
-Sebuah aplikasi manajemen restoran berbasis web menggunakan Laravel dan Tailwind CSS.
+[![Laravel](https://img.shields.io/badge/Laravel-9.x-red)](https://laravel.com/) 
+[![PHP](https://img.shields.io/badge/PHP-8.x-blue)](https://www.php.net/) 
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-teal)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-## Deskripsi
+A **web-based restaurant management system** built with **Laravel** and **Tailwind CSS**, designed to manage menus, orders, and transactions efficiently.
 
-Aplikasi ini dirancang untuk membantu restoran dalam mengelola menu, pesanan, dan transaksi secara efisien. Dengan antarmuka pengguna yang responsif dan fitur-fitur yang mudah digunakan, aplikasi ini bertujuan untuk meningkatkan produktivitas dan kepuasan pelanggan.
+---
 
-## Fitur Utama
+## 📋 Table of Contents
 
-- **Manajemen Menu**: Menambah, mengedit, dan menghapus item menu.
-- **Manajemen Pesanan**: Melihat, mengonfirmasi, dan mengelola status pesanan.
-- **Transaksi**: Mencatat transaksi dan menghasilkan laporan keuangan.
-- **Antarmuka Responsif**: Desain yang kompatibel dengan berbagai perangkat.
+- [Description](#description)  
+- [Features](#features)  
+- [Technologies](#technologies)  
+- [Installation](#installation)  
+- [Testing](#testing)  
+- [Screenshots](#screenshots-optional)  
+- [Contributing](#contributing)  
+- [License](#license)
 
-## Teknologi yang Digunakan
+---
 
-- **Backend**: Laravel
-- **Frontend**: Tailwind CSS, Vite
-- **Database**: MySQL
-- **Autentikasi**: Laravel Breeze
+## 📝 Description
+
+Restoran is a simple yet powerful restaurant management system with a **responsive UI** and **user-friendly interface**, perfect for small to medium restaurants. It allows restaurant owners and staff to manage their daily operations effectively.
+
+---
+
+## ⚡ Features
+
+- **Menu Management**: Add, edit, and delete food items.  
+- **Order Management**: Track and update order statuses.  
+- **Transactions & Reports**: Monitor transactions and generate reports.  
+- **Responsive Design**: Works on desktop, tablet, and mobile.  
+- **User Authentication**: Secure login for admin and staff.
+
+---
+
+## 🛠️ Technologies
+
+- **Backend**: Laravel 9.x  
+- **Frontend**: Tailwind CSS, Vite  
+- **Database**: MySQL  
+- **Authentication**: Laravel Breeze  
 - **Testing**: PHPUnit
 
-## Instalasi
+---
 
-1. Clone repositori ini:
+## 🚀 Installation
+
+1. **Clone the repository**:
 
    ```bash
    git clone https://github.com/HilmiSalsabilla/restoran.git
    cd restoran
-   ```
+   ````
 
-2. Instal dependensi PHP menggunakan Composer:
+2. **Install PHP dependencies**:
 
    ```bash
    composer install
    ```
 
-3. Salin file `.env.example` menjadi `.env`:
+3. **Setup environment**:
 
    ```bash
    cp .env.example .env
-   ```
-
-4. Generate key aplikasi:
-
-   ```bash
    php artisan key:generate
    ```
 
-5. Set konfigurasi database di file `.env`:
+4. **Configure database** in `.env`:
 
    ```ini
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
-   DB_DATABASE=nama_database
-   DB_USERNAME=nama_pengguna
-   DB_PASSWORD=katasandi
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
    ```
 
-6. Jalankan migrasi database:
+5. **Run migrations**:
 
    ```bash
    php artisan migrate
    ```
 
-7. Instal dependensi frontend menggunakan npm:
+6. **Install frontend dependencies**:
 
    ```bash
    npm install
    ```
 
-8. Jalankan server pengembangan:
+7. **Start the development server**:
 
    ```bash
    npm run dev
    php artisan serve
    ```
 
-Aplikasi sekarang dapat diakses di `http://127.0.0.1:8000/`.
+Access the app at [http://localhost:8000](http://localhost:8000).
 
-## Pengujian
+---
 
-Untuk menjalankan pengujian otomatis di Git Bash:
+## 🧪 Testing
 
-    ```bash
-    php artisan serve
-    "npm" run dev
-    ```
+Run automated tests:
 
-## Kontribusi
+   ```bash
+   php artisan test
+   ```
 
-Kontribusi sangat diterima! Silakan fork repositori ini, buat cabang baru (`git checkout -b fitur-anda`), buat perubahan, dan ajukan pull request.
+---
 
-## Lisensi
+## 📸 Screenshots (Optional)
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+Showcase your app with screenshots:
 
+![Dashboard](screenshots/dashboard.png)
+![Admin Management](screenshots/admin-page.png)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create your branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m "Add some feature"`
+4. Push to the branch: `git push origin feature-name`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+
+```
 Made with ❤️ by [Hilmi Salsabilla](https://github.com/HilmiSalsabilla)
