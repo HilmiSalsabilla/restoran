@@ -118,8 +118,11 @@ Run automated tests:
 
 Showcase your app with screenshots:
 
-![Dashboard](screenshots/dashboard.png)
-![Admin Management](screenshots/admin-page.png)
+1. Dashboard
+   ![Dashboard](screenshots/dashboard.png)
+
+2. Admin Management
+   ![Admin Management](screenshots/admin-page.png)
 
 ---
 
